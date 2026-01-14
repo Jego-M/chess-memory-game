@@ -12,6 +12,11 @@ export default function SidePanel() {
 
     const [isOpen, setIsOpen] = useState(width >= 1350)
 
+    function handleLinkClicked() {
+        if (width >= 1350) return
+        setIsOpen(false)
+    }
+
     if (!isOpen) {
         return (
             <button className="side-panel-menu-button" onClick={() => setIsOpen(true)}>
@@ -26,20 +31,20 @@ export default function SidePanel() {
                 <CloseIcon className="side-panel-menu-icon"/>
             </button>
             <div>
-                <Link to="/" className="side-panel-logo-container" onClick={() => setIsOpen(false)}>
+                <Link to="/" className="side-panel-logo-container" onClick={handleLinkClicked}>
                     <ChessboardIcon className="side-panel-icon"/>
                     <p className="side-panel-title">Chess Memory<br/>Game</p>
                 </Link>
                 <nav className="side-panel-nav">
                     <NavLink 
-                        onClick={() => setIsOpen(false)}
+                        onClick={handleLinkClicked}
                         to="play" 
                         className={({isActive}) => isActive ? "side-panel-nav-link side-panel-nav-link-active" : "side-panel-nav-link"}
                     >
                         Play
                     </NavLink>
                     <NavLink 
-                        onClick={() => setIsOpen(false)}
+                        onClick={handleLinkClicked}
                         to="about" 
                         className={({isActive}) => isActive ? "side-panel-nav-link side-panel-nav-link-active" : "side-panel-nav-link"}
                     >
